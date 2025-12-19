@@ -176,7 +176,7 @@ export default function Login() {
         <div className="mt-6 text-center">
           <p className="text-sm text-gray-600">
             Don't have an account?{' '}
-            <a href="/register" className="text-blue-600 hover:text-blue-500 font-medium">
+            <a href="https://full-stack-taskmanage-webapp.onrender.com/register" className="text-blue-600 hover:text-blue-500 font-medium">
               Sign up
             </a>
           </p>
