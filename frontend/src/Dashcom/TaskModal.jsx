@@ -8,7 +8,7 @@ export default function TaskModal({ isOpen, onClose }) {
 
   const { mutate: createTask, isPending } = useMutation({
     mutationFn: (newTask) =>
-      axios.post("http://localhost:8080/createtask", newTask),
+      axios.post("https://full-stack-taskmanage-webapp.onrender.com/createtask", newTask),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["tasks"] });
       onClose();

@@ -23,7 +23,7 @@ function Tasks() {
     queryKey: ["tasks", userId],
     queryFn: async () => {
       if (!userId) return []; // Return empty array if no user ID
-      const response = await fetch(`http://localhost:8080/tasks?user_id=${userId}`);
+      const response = await fetch(`https://full-stack-taskmanage-webapp.onrender.com/tasks?user_id=${userId}`);
       if (!response.ok) {
         throw new Error("Failed to fetch tasks");
       }
