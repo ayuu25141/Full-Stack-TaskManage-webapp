@@ -34,13 +34,13 @@ function Nav() {
         {/* Auth Buttons */}
         <div className="flex flex-row gap-4">
           <a
-            href="https://full-stack-taskmanage-webapp.onrender.com/register"
+            href="https://full-stack-taskmanage-webapp-1.onrender.com/register"
             className="px-4 py-2 text-white hover:bg-blue-600 rounded-lg transition-colors duration-300"
           >
             Signup
           </a>
           <a
-            href="https://full-stack-taskmanage-webapp.onrender.com/login"
+            href="https://full-stack-taskmanage-webapp-1.onrender.com/login"
             className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors duration-300"
           >
             Login

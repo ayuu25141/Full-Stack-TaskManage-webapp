@@ -54,7 +54,7 @@ export default function SignupPage() {
     setIsSubmitting(true);
 
     try {
-      const response = await axios.post('https://full-stack-taskmanage-webapp.onrender.com/register', {
+      const response = await axios.post('https://full-stack-taskmanage-webapp-1.onrender.com/register', {
         fullName: formData.fullName,
         email: formData.email,
         password: formData.password,
