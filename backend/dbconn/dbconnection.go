@@ -11,20 +11,15 @@ import (
 
 var Pool *pgxpool.Pool
 
-// ConnectDB initializes PostgreSQL using PGX only
+// ConnectDB initializes PostgreSQL using PGX with DATABASE_URL
 func ConnectDB() {
-	host := os.Getenv("DB_HOST")
-	user := os.Getenv("DB_USER")
-	pass := os.Getenv("DB_PASSWORD")
-	name := os.Getenv("DB_NAME")
-	port := os.Getenv("DB_PORT")
+	dbURL := os.Getenv("DATABASE_URL")
+	if dbURL == "" {
+		panic("❌ DATABASE_URL is not set")
+	}
 
-	dsn := fmt.Sprintf(
-		"postgres://%s:%s@%s:%s/%s?sslmode=disable",
-		user, pass, host, port, name,
-	)
-
-	config, err := pgxpool.ParseConfig(dsn)
+	// parse PGX config from full URL
+	config, err := pgxpool.ParseConfig(dbURL)
 	if err != nil {
 		panic("❌ Failed to parse PGX config: " + err.Error())
 	}
@@ -41,10 +36,10 @@ func ConnectDB() {
 	}
 
 	Pool = pool
-	fmt.Println("✅ Database connected (PGX only)")
+	fmt.Println("✅ Database connected (Neon PGX)")
 }
 
-// CloseDB closes pgx pool
+// CloseDB closes PGX pool
 func CloseDB() {
 	if Pool != nil {
 		Pool.Close()
