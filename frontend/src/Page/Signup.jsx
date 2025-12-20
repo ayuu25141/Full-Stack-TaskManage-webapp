@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Eye, EyeOff, CheckCircle2, AlertCircle } from 'lucide-react';
 import axios from 'axios';
-
+import { API_URL } from '../config';
 export default function SignupPage() {
   const [formData, setFormData] = useState({
     fullName: '',
@@ -54,7 +54,7 @@ export default function SignupPage() {
     setIsSubmitting(true);
 
     try {
-      const response = await axios.post('https://full-stack-taskmanage-webapp-1.onrender.com/register', {
+         const response = await axios.post(`${API_URL}/register`, {
         fullName: formData.fullName,
         email: formData.email,
         password: formData.password,
