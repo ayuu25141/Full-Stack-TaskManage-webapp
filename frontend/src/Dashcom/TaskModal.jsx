@@ -2,23 +2,20 @@ import { X } from "lucide-react";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import axios from "axios";
 import toast from "react-hot-toast";
+import { API_URL } from '../config'; // use your config
 
 export default function TaskModal({ isOpen, onClose }) {
   const queryClient = useQueryClient();
 
-  const { mutate: createTask, isPending } = useMutation({
-    mutationFn: (newTask) =>
-      axios.post("https://full-stack-taskmanage-webapp.onrender.com/createtask", newTask),
+  const { mutate: createTask, isLoading } = useMutation({
+    mutationFn: (newTask) => axios.post(`${API_URL}/createtask`, newTask),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["tasks"] });
       onClose();
       toast.success("Task created successfully!", {
         duration: 3000,
         position: "top-right",
-        style: {
-          background: "#4BB543",
-          color: "#fff",
-        },
+        style: { background: "#4BB543", color: "#fff" },
       });
     },
     onError: (error) => {
@@ -26,10 +23,7 @@ export default function TaskModal({ isOpen, onClose }) {
       toast.error("Failed to create task. Please try again.", {
         duration: 3000,
         position: "top-right",
-        style: {
-          background: "#ff4444",
-          color: "#fff",
-        },
+        style: { background: "#ff4444", color: "#fff" },
       });
     },
   });
@@ -43,16 +37,12 @@ export default function TaskModal({ isOpen, onClose }) {
       toast.error("User not authenticated. Please log in.", {
         duration: 3000,
         position: "top-right",
-        style: {
-          background: "#ff4444",
-          color: "#fff",
-        },
+        style: { background: "#ff4444", color: "#fff" },
       });
       return;
     }
 
-    const user = JSON.parse(storedUser);
-    const userId = user.id;
+    const userId = JSON.parse(storedUser).id;
 
     const newTask = {
       user_id: userId,
@@ -122,10 +112,10 @@ export default function TaskModal({ isOpen, onClose }) {
             </button>
             <button
               type="submit"
-              disabled={isPending}
+              disabled={isLoading}
               className="px-5 py-2 bg-white text-black rounded-lg font-semibold disabled:opacity-50"
             >
-              {isPending ? "Adding..." : "Add Task"}
+              {isLoading ? "Adding..." : "Add Task"}
             </button>
           </div>
         </form>

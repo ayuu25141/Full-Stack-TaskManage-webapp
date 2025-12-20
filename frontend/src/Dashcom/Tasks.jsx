@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import { useState, useEffect } from "react";
-
+import { API_URL } from '../config';
 function Tasks() {
   const [userId, setUserId] = useState(null);
 
@@ -23,7 +23,7 @@ function Tasks() {
     queryKey: ["tasks", userId],
     queryFn: async () => {
       if (!userId) return []; // Return empty array if no user ID
-      const response = await fetch(`https://full-stack-taskmanage-webapp-1.onrender.com/tasks?user_id=${userId}`);
+    const response = await fetch(`${API_URL}/tasks?user_id=${userId}`);
       if (!response.ok) {
         throw new Error("Failed to fetch tasks");
       }
