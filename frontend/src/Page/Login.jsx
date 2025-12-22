@@ -86,7 +86,7 @@ export default function Login() {
               onChange={handleChange}
               placeholder="your@email.com"
               disabled={isSubmitting}
-              className={`w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 ${
+              className={`w-full  text-black px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 ${
                 errors.email ? 'border-red-300 focus:ring-red-200' : 'border-gray-300 focus:ring-blue-200'
               }`}
             />
@@ -104,7 +104,7 @@ export default function Login() {
                 onChange={handleChange}
                 placeholder="••••••••"
                 disabled={isSubmitting}
-                className={`w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 pr-12 ${
+                className={`w-full text-black px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 pr-12 ${
                   errors.password ? 'border-red-300 focus:ring-red-200' : 'border-gray-300 focus:ring-blue-200'
                 }`}
               />
